@@ -1,0 +1,11 @@
+# Invocations for common project tasks
+pytest
+tox>=3.8
+tox-pip-extensions
+responses
+# Documentation tools
+sphinx
+alabaster
+# Release tools
+wheel
+twine
