@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: termination-handler
+  namespace: kube-system
+  labels:
+    app: termination-handler
+spec:
+  template:
+    metadata:
+      name: termination-handler
+      labels:
+        app: termination-handler
+    spec:
+      # Uncomment the following line if using RBAC
+      serviceAccountName: termination-handler
+      containers:
+      - name: termination-handler
+        image: dgzlopes/termination-handler-k8s:v0.0.1
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          # Parameters to drain commmand can be adjusted
+          - name: DRAIN_PARAMETERS
+            value: '--grace-period=120 --force --ignore-daemonsets'
+        resources:
+          requests:
+            cpu: 5m
+            memory: 20Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+      nodeSelector:
+        "node-role.kubernetes.io/spot-worker": "true"
