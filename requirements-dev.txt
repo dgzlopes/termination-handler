@@ -3,6 +3,7 @@ pytest
 tox>=3.8
 tox-pip-extensions
 responses
+pre-commit==1.11.2
 # Documentation tools
 sphinx
 alabaster

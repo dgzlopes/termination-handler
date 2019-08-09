@@ -8,6 +8,10 @@ clean:
 	find -name '*.pyc' -delete
 	find -name '__pycache__' -delete
 
+.PHONY: install-hooks
+install-hooks:
+	tox -e pre-commit -- install -f --install-hooks
+
 .PHONY: publish
 publish:
 	rm -fr build dist .egg termination_handler.egg-info
@@ -15,7 +19,7 @@ publish:
 	python3 setup.py sdist bdist_wheel
 	twine upload dist/*
 	rm -fr build dist .egg termination_handler.egg-info
-	
+
 .PHONY: super-clean
 super-clean: clean
 	rm -rf .tox
