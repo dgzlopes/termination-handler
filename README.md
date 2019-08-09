@@ -18,7 +18,7 @@ TBD
 ## Usage
 ### Deploy to Kubernetes
 
-A K8s docker image is available at [`dgzlopes/termination-handler-k8s`](https://cloud.docker.com/u/dgzlopes/repository/docker/dgzlopes/termination-handler) and sample Kubernetes manifests are available in the [deploy/k8s](deploy/k8s) folder.
+A K8s docker image is available at [`dgzlopes/termination-handler-k8s`](https://hub.docker.com/r/dgzlopes/termination-handler-k8s) and sample Kubernetes manifests are available in the [deploy/k8s](deploy/k8s) folder.
 
 To deploy in clusters using RBAC, please apply all of the manifests (Daemonset, ClusterRole, ClusterRoleBinding and ServiceAccount) in the [deploy/k8s](deploy/k8s) folder but uncomment the `serviceAccountName` in the [Daemonset](deploy/k8s/daemonset.yaml).
 
