@@ -1,14 +1,16 @@
 from __future__ import generators
 
-import requests
+import argparse
+import logging
+import os
 import sys
 import time
-import argparse
-import os
-import logging
 
-from termination_handler.handlers import K8sHandler, NomadHandler
+import requests
 from cloud_detect import provider
+
+from termination_handler.handlers import K8sHandler
+from termination_handler.handlers import NomadHandler
 
 
 def parse_arguments():
@@ -34,29 +36,32 @@ def parse_arguments():
         type=float,
         help='(seconds, %(type)s, default: %(default)s)',
     )
-    parser.add_argument('--k8s',
-                        default=os.environ.get("K8S_TERMINATION_HANDLER"),
-                        action='store_true',
-                        help="draining of Kubernetes nodes",
-                        )
-    parser.add_argument('--nomad',
-                        default=os.environ.get("NOMAD_TERMINATION_HANDLER"),
-                        action='store_true',
-                        help="draining of Nomad nodes",
-                        )
-    parser.add_argument('--demo',
-                        default=os.environ.get("DEMO_TERMINATION_HANDLER"),
-                        action='store_true',
-                        help="runs all the activated handlers (useful for testing)",
-                        )
+    parser.add_argument(
+        '--k8s',
+        default=os.environ.get('K8S_TERMINATION_HANDLER'),
+        action='store_true',
+        help='draining of Kubernetes nodes',
+    )
+    parser.add_argument(
+        '--nomad',
+        default=os.environ.get('NOMAD_TERMINATION_HANDLER'),
+        action='store_true',
+        help='draining of Nomad nodes',
+    )
+    parser.add_argument(
+        '--demo',
+        default=os.environ.get('DEMO_TERMINATION_HANDLER'),
+        action='store_true',
+        help='runs all the activated handlers (useful for testing)',
+    )
     return parser.parse_args()
 
 
 def check_status(provider=None):
     """ Return checking function for the passed provider"""
-    if provider is 'aws':
+    if provider == 'aws':
         return check_aws()
-    elif provider is 'gcp':
+    elif provider == 'gcp':
         return check_gcp()
     else:
         logging.error('Nothing to check')
@@ -70,7 +75,7 @@ def check_aws():
     try:
         if requests.get(url, timeout=2).status_code == 200:
             return True
-    except:
+    except BaseException:
         pass
     return False
 
@@ -83,7 +88,7 @@ def check_gcp():
     try:
         if requests.get(url, headers=headers, timeout=2).text == 'TRUE':
             return True
-    except:
+    except BaseException:
         pass
     return False
 
@@ -108,9 +113,11 @@ def main():
 
     wait_time = args.wait
     wait_step = args.step
-    logging.info('Running termination-handler with wait_time %d and wait_step %d on %s ',
-                 wait_time, wait_step, cloud_provider_name)
-    if cloud_provider_name is not 'unknown' and args.demo is not True:
+    logging.info(
+        'Running termination-handler with wait_time %d and wait_step %d on %s ',
+        wait_time, wait_step, cloud_provider_name,
+    )
+    if cloud_provider_name != 'unknown' and args.demo is not True:
         count = 0
         while True:
             if check_status(cloud_provider_name) is True:
@@ -132,5 +139,6 @@ def main():
             sys.exit()
         else:
             logging.error(
-                "Run failed. Cloud provider '%s' not valid", cloud_provider_name)
+                "Run failed. Cloud provider '%s' not valid", cloud_provider_name,
+            )
             sys.exit()

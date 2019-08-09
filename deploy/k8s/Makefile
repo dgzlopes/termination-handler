@@ -9,7 +9,7 @@ publish:
 
 .PHONY: deploy
 deploy:
-	kubectl create -f manifests/clusterrole.yaml 
-	kubectl create -f manifests/serviceaccount.yaml 
-	kubectl create -f manifests/clusterrolebinding.yaml 
-	kubectl create -f manifests/daemonset.yaml 
+	kubectl create -f manifests/clusterrole.yaml
+	kubectl create -f manifests/serviceaccount.yaml
+	kubectl create -f manifests/clusterrolebinding.yaml
+	kubectl create -f manifests/daemonset.yaml

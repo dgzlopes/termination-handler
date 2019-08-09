@@ -1,8 +1,8 @@
 # termination-handler
-[![PyPI](https://img.shields.io/pypi/v/cloud-detect.svg)](https://pypi.org/project/termination-handler/) 
+[![PyPI](https://img.shields.io/pypi/v/cloud-detect.svg)](https://pypi.org/project/termination-handler/)
 [![PyPI - License](https://img.shields.io/pypi/l/cloud-detect.svg)](https://github.com/dgzlopes/termination-handler/blob/master/LICENSE.md)
 ## About
-`termination-handler` handles termination notices on spot/preemptible instances. 
+`termination-handler` handles termination notices on spot/preemptible instances.
 
 As an example, if deployed on a Kubernetes cluster and a termination notice is issued by the cloud provider, `termination-handler` drains the node it is running on before the node is taken away by the cloud provider.
 

@@ -15,7 +15,7 @@ setup(
     license='MIT',
     install_requires=[
         'requests',
-        'cloud-detect'
+        'cloud-detect',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
