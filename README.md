@@ -10,7 +10,7 @@ Inspired by [pusher/k8s-spot-termination-handler](https://github.com/pusher/k8s-
 
 ## Features
 - Supports multiple cloud providers (AWS, GCP).
-- Supports multiple scheduling & orchestration tools (Kubernetes, Nomad).
+- Supports multiple handlers (Kubernetes, Nomad).
 - Small and extensible.
 
 ## Documentation
@@ -44,12 +44,19 @@ env:
   - name: DRAIN_PARAMETERS
     value: '--grace-period=120 --force --ignore-daemonsets --delete-local-data'
 ```
-
-#### Demo mode
-TBD
-
 ### Deploy to Nomad
 TBD
+
+### Demo mode
+
+The main way to use termination-handler is waiting for the termination notice from the cloud provider. However, termination-handler comes with a demo mode that is can simulate the notice. When deployed it will identify your cloud provider and run your handlers.
+
+To activate termination-handler demo mode on Kubernetes, you can use `DEMO_TERMINATION_HANDLER` environment property.
+```yaml
+env:
+  - name: DEMO_TERMINATION_HANDLER
+    value: True
+```
 
 ## How to contribute
 1. Check for open issues or open a fresh issue to start a discussion around a feature idea or a bug.
