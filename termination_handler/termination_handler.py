@@ -64,7 +64,7 @@ def check_status(provider=None):
     elif provider == 'gcp':
         return check_gcp()
     else:
-        logging.error('Nothing to check')
+        logging.error('Provider not implemented')
         sys.exit()
 
 
