@@ -16,7 +16,7 @@ spec:
       serviceAccountName: termination-handler
       containers:
       - name: termination-handler
-        image: dgzlopes/termination-handler-k8s:v0.0.1
+        image: dgzlopes/termination-handler-k8s:latest
         imagePullPolicy: IfNotPresent
         env:
           - name: NODE_NAME
