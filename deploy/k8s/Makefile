@@ -1,11 +1,11 @@
 .PHONY: build
 build:
-	docker build -t dgzlopes/termination-handler-k8s:v0.0.3 -t dgzlopes/termination-handler-k8s:latest . --no-cache
+	docker build -t dgzlopes/termination-handler-k8s:v0.0.4 -t dgzlopes/termination-handler-k8s:latest . --no-cache
 
 .PHONY: publish
 publish:
 	docker login
-	docker push dgzlopes/termination-handler-k8s:v0.0.3
+	docker push dgzlopes/termination-handler-k8s:v0.0.4
 	docker push dgzlopes/termination-handler-k8s:latest
 
 .PHONY: deploy
