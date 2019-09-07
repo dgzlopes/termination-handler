@@ -11,6 +11,7 @@ from cloud_detect import provider
 
 from termination_handler.handlers import K8sHandler
 from termination_handler.handlers import NomadHandler
+from termination_handler.handlers import SlackHandler
 
 
 def parse_arguments():
@@ -47,6 +48,20 @@ def parse_arguments():
         default=os.environ.get('NOMAD_TERMINATION_HANDLER'),
         action='store_true',
         help='draining of Nomad nodes',
+    )
+    parser.add_argument(
+        '--slack',
+        default=os.environ.get('SLACK_TERMINATION_HANDLER'),
+        action='store_true',
+        help='send notification to Slack',
+    )
+    parser.add_argument(
+        '--slack-api-token',
+        default=os.environ.get('SLACK_API_TOKEN'),
+    )
+    parser.add_argument(
+        '--slack-channel',
+        default=os.environ.get('SLACK_CHANNEL'),
     )
     parser.add_argument(
         '--demo',
@@ -100,6 +115,10 @@ def build_handlers(args):
         handlers_to_return.append(K8sHandler())
     if args.nomad:
         handlers_to_return.append(NomadHandler())
+    if args.slack:
+        handlers_to_return.append(SlackHandler(
+            token=args.slack_api_token, channel=args.slack_channel,
+        ))
     return handlers_to_return
 
 

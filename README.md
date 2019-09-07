@@ -60,6 +60,10 @@ env:
     value: True
 ```
 
+### Other handlers
+#### Slack
+This handler sends a notification message to a specific channel when a termination notice is issued.
+
 ## How to contribute
 1. Check for open issues or open a fresh issue to start a discussion around a feature idea or a bug.
 2. Fork [the repository](https://github.com/dgzlopes/termination-handler) on GitHub to start making your changes to the master branch (or branch off of it).

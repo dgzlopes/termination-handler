@@ -7,7 +7,7 @@ with open('README.md') as f:
 
 setup(
     name='termination-handler',
-    version='0.0.2',
+    version='0.0.3',
     description='Handle termination notices on spot/preemptible instances.',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -16,6 +16,7 @@ setup(
     install_requires=[
         'requests',
         'cloud-detect',
+        'slackclient',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
