@@ -10,7 +10,7 @@ Inspired by [pusher/k8s-spot-termination-handler](https://github.com/pusher/k8s-
 
 ## Features
 - Supports multiple cloud providers (AWS, GCP).
-- Supports multiple handlers (Kubernetes, Nomad).
+- Supports multiple handlers (Kubernetes, Nomad, Slack).
 - Small and extensible.
 
 ## Documentation
@@ -62,7 +62,7 @@ env:
 
 ### Other handlers
 #### Slack
-This handler sends a notification message to a specific channel when a termination notice is issued.
+Sends a notification message to a specific channel when a termination notice is issued.
 
 ## How to contribute
 1. Check for open issues or open a fresh issue to start a discussion around a feature idea or a bug.
@@ -73,5 +73,5 @@ This handler sends a notification message to a specific channel when a terminati
 Some things that would be great to have:
 - Support for Azure cloud provider.
 - Support for Execution handler (certain command or task)
-- Support for notifications (Slack, Datadog..)
+- Support for notifications (Datadog..)
 - Option to omit selected cloud provider discovery.
