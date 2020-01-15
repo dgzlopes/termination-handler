@@ -45,7 +45,7 @@ env:
     value: '--grace-period=120 --force --ignore-daemonsets --delete-local-data'
 ```
 ### Deploy to Nomad
-A Nomad docker image is available at [`dgzlopes/termination-handler-k8s`](https://hub.docker.com/r/dgzlopes/termination-handler-nomad).
+A Nomad docker image is available at [`dgzlopes/termination-handler-nomad`](https://hub.docker.com/r/dgzlopes/termination-handler-nomad).
 
 TBD
 
