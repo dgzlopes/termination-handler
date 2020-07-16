@@ -71,7 +71,6 @@ Sends a notification message to a specific channel when a termination notice is 
 4. Send a [pull request](https://help.github.com/en/articles/creating-a-pull-request-from-a-fork) and bug [me](https://github.com/dgzlopes) until it gets merged and published.
 
 Some things that would be great to have:
-- Support for Azure cloud provider.
 - Support for Execution handler (certain command or task)
 - Support for notifications (Datadog..)
 - Option to omit selected cloud provider discovery.

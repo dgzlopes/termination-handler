@@ -78,6 +78,8 @@ def check_status(provider=None):
         return check_aws()
     elif provider == 'gcp':
         return check_gcp()
+    elif provider == 'azure':
+        return check_azure()
     else:
         logging.error('Provider not implemented')
         sys.exit()
@@ -102,6 +104,20 @@ def check_gcp():
     url = base_url + '/preempted'
     try:
         if requests.get(url, headers=headers, timeout=2).text == 'TRUE':
+            return True
+    except BaseException:
+        pass
+    return False
+
+
+def check_azure():
+    """ Check if Azure termination notice exists """
+    base_url = 'http://169.254.169.254'
+    headers = {'Metadata': 'true'}
+    url = base_url + '/scheduledevents?api-version=2019-01-01'
+    try:
+        if "Preempt" in list(
+                map(lambda d: d.get('EventType', 'None'), requests.get(url, headers=headers).json()["Events"])):
             return True
     except BaseException:
         pass

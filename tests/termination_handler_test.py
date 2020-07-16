@@ -37,6 +37,26 @@ def test_bad_response_aws_check():
 
 
 @responses.activate
+def test_response_azure_check():
+    mocking_url = 'http://169.254.169.254/scheduledevents?api-version=2019-01-01'
+    responses.add(
+        responses.GET, mocking_url
+    )
+
+    assert check_status('azure') is True
+
+
+@responses.activate
+def test_bad_response_azure_check():
+    mocking_url = 'http://169.254.169.254/scheduledevents?api-version=2019-01-01'
+    responses.add(
+        responses.GET, mocking_url, status=404,
+    )
+
+    assert check_status('azure') is False
+
+
+@responses.activate
 def test_response_gcp_check():
     mocking_url = 'http://metadata.google.internal/computeMetadata/v1/instance/preempted'
     headers = {'Metadata-Flavor': 'Google'}
