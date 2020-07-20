@@ -7,7 +7,7 @@ with open('README.md') as f:
 
 setup(
     name='termination-handler',
-    version='0.0.4',
+    version='0.0.5',
     description='Handle termination notices on spot/preemptible instances.',
     long_description=long_description,
     long_description_content_type='text/markdown',
